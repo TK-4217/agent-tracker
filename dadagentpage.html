@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>Agent Tracker</title>
+        <style>
+            table {
+                table-layout: fixed;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="1">Agent Tracker!</h1>
+        
+        <label>Last Name
+            <input id="lastName" type="text">
+        </label>
+
+        <label>First Name
+            <input id="firstName" type="text">
+        </label>
+
+        <label>Agency
+            <input id="agency" type="text">
+        </label>
+
+        <label>Info Page
+            <input id="infoPage" type="text">
+        </label>
+
+        <label>Query Link
+            <input id="queryLink" type="text">
+        </label>
+
+        <label>What They Want
+            <select id="wants">
+                <option value='20 Pages'>20 Pages</option>
+                <option value='30 Pages'>30 Pages</option>
+                <option value='40 Pages'>40 Pages</option>
+            </select>
+        </label>
+
+        <label>Days To Respond
+            <input id="days" type="integer">
+        </label>
+
+        <label>Notes
+            <input id="notes" type="text">
+        </label>
+
+        <button id="addRow">Add Row!</button>
+
+        <script src="https://sql.js.org/dist/sql-wasm.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            config = {
+            locateFile: filename => "https://sql.js.org/dist/sql-wasm.wasm"
+            }
+
+            function makeNewTableHead(th1Content, th2Content, th3Content, th4Content, th5Content, th6Content, th7Content, th8Content) {
+                var table = $("<table id='table'> <thead id='thead'> <tr id='trhead'> <th class='th' id='th1'>"+th1Content+"</th> <th class='th' id='th2'>"+th2Content+"</th> <th class='th' id='th3'>"+th3Content+"</th> <th class='th' id='th4'>"+th4Content+"</th> <th class='th' id='th5'>"+th5Content+"</th> <th class='th' id='th6'>"+th6Content+"</th> <th class='th' id='th7'>"+th7Content+"</th> <th class='th' id='th8'>"+th8Content+"</th> </tr> </thead></table>");
+                return table;
+            }
+
+            function appendNewRow(table, td1Content, td2Content, td3Content, td4Content, td5Content, td6Content, td7Content, td8Content) {
+                table.append("<tbody> <tr> <td>" + td1Content + "</td> <td>" + td2Content + "</td> <td>" + td3Content + "</td> <td>" + td4Content + "</td> <td>" + td5Content + "</td> <td>" + td6Content + "</td> <td>" + td7Content + "</td> <td>" + td8Content + "</td> </tr> </tbody>");
+            }
+
+            var agentTable = makeNewTableHead("Last Name", "First Name", "Agency", "Info Page", "Query Link", "What They Want", "Days to Respond", "Notes");
+            $("body").append(agentTable);
+
+            function onButtonClick() {
+                var table = $("#table");
+                var lastName = $("#lastName").val();
+                var firstName = $("#firstName").val();
+                var agency = $("#agency").val();
+                var info = $("#infoPage").val();
+                var query = $("#queryLink").val();
+                var wants = $("#wants").val();
+                var days = $("#days").val();
+                var notes = $("#notes").val();
+                appendNewRow(table, lastName, firstName, agency, info, query, wants, days, notes);
+                $("#lastName").val('');
+                $("#firstName").val('');
+                $("#agency").val('');
+                $("#infoPage").val('');
+                $("#queryLink").val('');
+                $("#wants").val('');
+                $("#days").val(''); 
+                $("#notes").val('');   
+            };
+            $("#addRow").on("click", function() {
+                onButtonClick();
+            });
+        </script>
+    </body>
+</html>
