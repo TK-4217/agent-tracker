@@ -13,21 +13,22 @@
         <a href="/agencies/index.html">Agencies</a>
         <a href="/agents/index.html">Agents</a>
 
-        <button id='test'>Test</button>
-        <button id='test2'>Test2</button>
+        <form action="tracker.linesoflight.xyz" method="POST">
+            <div>
+                <label for="say">What greeting do you want to say?</label>
+                <input name="say" id="say" value="Hi">
+            </div>
+            <div>
+                <label for="to">Who do you want to say it to?</label>
+                <input name="to" id="to" value="Mom">
+            </div>
+            <div>
+                <button>Send my greetings</button>
+            </div>
+        </form>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            var testVal = false;
-            $("#test").on('click', function() {
-                testVal = true;
-                if(!localStorage.getItem('testVal')) {
-                    localStorage.setItem('testVal', testVal);
-                }
-            })
-            $("#test2").on('click', function() {
-                console.log(localStorage.getItem('testVal'))
-            })
         </script>
     </body>
 </html>
