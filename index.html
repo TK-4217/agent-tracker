@@ -14,6 +14,7 @@
         <a href="/agents/index.html">Agents</a>
 
         <button id='test'>Test</button>
+        <button id='test2'>Test2</button>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
@@ -24,7 +25,9 @@
                     localStorage.setItem('testVal', testVal);
                 }
             })
-            console.log(localStorage.getItem('testVal'));
+            $("#test").on('click', function() {
+                console.log(localStorage.getItem('testVal'))
+            })
         </script>
     </body>
 </html>
