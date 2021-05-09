@@ -13,6 +13,7 @@
         <a href="/agencies/index.html">Agencies</a>
         <a href="/agents/index.html">Agents</a>
         <input type='text' id='test'>Test</input>
+        <button id='testButton'>Enter</button>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
@@ -43,15 +44,17 @@
 
             var testValue = $("#test").val();
 
-            if (storageAvailable('localStorage')) {
+            $("testButton").on('click', function() {
+                if (storageAvailable('localStorage')) {
 
-                if(!localStorage.getItem('testing')) {
-                    localStorage.setItem('testing', testValue);
-                    $("#p").html(localStorage.getItem(testValue));
-                } else {
-                    $("#p").html(localStorage.getItem(testValue));;
+                    if(!localStorage.getItem('testing')) {
+                        localStorage.setItem('testing', testValue);
+                        $("#p").html(localStorage.getItem(testValue));
+                    } else {
+                        $("#p").html(localStorage.getItem(testValue));;
+                    }
                 }
-            }
+            })
         </script>
     </body>
 </html>
