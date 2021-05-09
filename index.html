@@ -12,49 +12,19 @@
         </p>
         <a href="/agencies/index.html">Agencies</a>
         <a href="/agents/index.html">Agents</a>
-        <input type='text' id='test'>Test</input>
-        <button id='testButton'>Enter</button>
+
+        <button id='test'>Test</button>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            function storageAvailable(type) {
-                var storage;
-                try {
-                    storage = window[type];
-                    var x = '__storage_test__';
-                    storage.setItem(x, x);
-                    storage.removeItem(x);
-                    return true;
-                }
-                catch(e) {
-                    return e instanceof DOMException && (
-                        // everything except Firefox
-                        e.code === 22 ||
-                        // Firefox
-                        e.code === 1014 ||
-                        // test name field too, because code might not be present
-                        // everything except Firefox
-                        e.name === 'QuotaExceededError' ||
-                        // Firefox
-                        e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-                        // acknowledge QuotaExceededError only if there's something already stored
-                        (storage && storage.length !== 0);
-                }
-            }
-
-            var testValue = $("#test").val();
-
-            $("testButton").on('click', function() {
-                if (storageAvailable('localStorage')) {
-
-                    if(!localStorage.getItem('testing')) {
-                        localStorage.setItem('testing', testValue);
-                        $("#p").html(localStorage.getItem(testValue));
-                    } else {
-                        $("#p").html(localStorage.getItem(testValue));;
-                    }
+            var testVal = false;
+            $("#test").on('click', function() {
+                testVal = true;
+                if(!localStorage.getItem('testVal')) {
+                    localStorage.setItem('testVal', testVal);
                 }
             })
+            console.log(localStorage.getItem('testVal'));
         </script>
     </body>
 </html>
