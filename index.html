@@ -33,15 +33,12 @@
                 email: email
             };
             firebase.database().ref('subscription-entries').push().set(emailObject)
-                .then(function(snapshot) {
+                .then(function() {
                     success();
-                }, function(error) {
-                    console.log('error' + error);
-                    error();
-            });
+                });
         }
 
-        saveToFirebase(email);
+        saveToFirebase("email");
         </script>
     </body>
 </html>
