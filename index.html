@@ -13,22 +13,35 @@
         <a href="/agencies/index.html">Agencies</a>
         <a href="/agents/index.html">Agents</a>
 
-        <form action="php-example.php" method="POST">
-            <div>
-                <label for="say">What greeting do you want to say?</label>
-                <input name="say" id="say" value="Hi">
-            </div>
-            <div>
-                <label for="to">Who do you want to say it to?</label>
-                <input name="to" id="to" value="Mom">
-            </div>
-            <div>
-                <button>Send my greetings</button>
-            </div>
-        </form>
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+
         <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDIwYvyM4nOgHYLk8KlokTk1qUBbDEA7Lo",
+            authDomain: "linesoflight-2beb6.firebaseapp.com",
+            projectId: "linesoflight-2beb6",
+            storageBucket: "linesoflight-2beb6.appspot.com",
+            messagingSenderId: "231493854222",
+            appId: "1:231493854222:web:a86cdae10ca6937461885f"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        function saveToFirebase(email) {
+            var emailObject = {
+                email: email
+            };
+            firebase.database().ref('subscription-entries').push().set(emailObject)
+                .then(function(snapshot) {
+                    success();
+                }, function(error) {
+                    console.log('error' + error);
+                    error();
+            });
+        }
+
+        saveToFirebase(email);
         </script>
     </body>
 </html>
