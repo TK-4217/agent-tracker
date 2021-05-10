@@ -13,32 +13,30 @@
         <a href="/agencies/index.html">Agencies</a>
         <a href="/agents/index.html">Agents</a>
 
+        <input type="file" onchange="uploadFile(this.files)">
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
 
         <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyDIwYvyM4nOgHYLk8KlokTk1qUBbDEA7Lo",
-            authDomain: "linesoflight-2beb6.firebaseapp.com",
-            projectId: "linesoflight-2beb6",
-            storageBucket: "linesoflight-2beb6.appspot.com",
-            messagingSenderId: "231493854222",
-            appId: "1:231493854222:web:a86cdae10ca6937461885f"
-        };
-        firebase.initializeApp(firebaseConfig);
+            function uploadFile(files) {
+                const storageRef = firebase.storage().ref();
+                const imgRef = storageRef.child('horse.jpg');
 
-        function saveToFirebase(email) {
-            var emailObject = {
-                email: email
-            };
-            firebase.database().ref('subscription-entries').push().set(emailObject)
-                .then(function() {
-                    success();
-                });
-        }
+                const file = files.item(0);
 
-        saveToFirebase("email");
+                const task = imgRef.put(file)
+
+                task.then(snapshot => {
+                    const url = snapshot.downloadURL
+                })
+
+                task.on('state_changed', snapshot => {
+                    console.log(snapshot)
+
+                })
+            }
         </script>
     </body>
 </html>
