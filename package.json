@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/TK-4217/agent-tracker#readme",
   "dependencies": {
-    "firebase": "^8.6.5"
+    "firebase": "^8.6.2"
   }
 }
